@@ -1,4 +1,4 @@
-(function($){
+(function($) {
 	// Plugin definition
 	$.fn.ajaxSelect = function(settings) {
 		// Extend this object from Deferred, allowing for promises
@@ -15,8 +15,8 @@
 				var element = $(this);
 				var thisSettings = fnGetSettingsFromAttributes(element, settings);
 
-				if (thisSettings.data != null) {
-					fnReplaceOpetions(element, thisSettings);
+				if (thisSettings.data !== null) {
+					fnReplaceOptions(element, thisSettings);
 				} else {
 					fnReplaceOptionsFromAjax(element, thisSettings);
 				}
@@ -45,7 +45,7 @@
 		var thisSettings = $.extend(true, {}, settings);
 
 		$.each(attributeSettings, function(i, e) {
-			if (thisSettings[e] == null) {
+			if (thisSettings[e] === null) {
 				thisSettings[e] = selectElem.data(e);
 			}
 		});
@@ -54,9 +54,9 @@
 	};
 
 	// Collect method and parameters into one object
-	var fnMethisIntoParam = function(settings) {
-		if (settings.method != null) {
-			if(settings.params.method == null) {
+	var fnMethodIntoParam = function(settings) {
+		if (settings.method !== null) {
+			if(settings.params.method === null) {
 				settings.params.method = settings.method;
 			}
 		}
@@ -65,14 +65,14 @@
 	};
 
 	var fnRequiredParamsExist = function(settings) {
-		return (settings.url != null && settings.params.method != null);
+		return (settings.url !== null && settings.params.method !== null);
 	};
 
 	var fnIsElementSelect = function(element) {
 		var response = false;
 		var type = element.tagName || element.type;
 
-		if (type != null) {
+		if (type !== null) {
 			type = type.toLowerCase();
 
 			if (type == 'select' || type == 'select-one' || type == 'slect-multiple') {
@@ -91,7 +91,7 @@
 		$.each(settings.data, function(i, obj) {
 			var optionElem = settings.optionElem.clone();
 			optionElem.val(obj.id);
-			optionElem.text(onj.name);
+			optionElem.text(obj.name);
 			selectElem.append(optionElem);
 		});
 	};
@@ -102,7 +102,7 @@
 	};
 
 	var fnReplaceOptionsFromAjax = function(selectElem, settings) {
-		settings = fnMehodIntoParams(settings);
+		settings = fnMethodIntoParam(settings);
 
 		if (fnRequiredParamsExist(settings)) {
 			// Make AJAX call
@@ -115,12 +115,16 @@
 					fnReplaceOptions(selectElem, settings);
 				},
 				beforeSend:	function(jqXHR, textStatus, errorThrown) {
-					$body.addClass('loading');
+					try {
+						$body.addClass('loading');
+					} catch(e) {}
 				},
 				complete:	function(jqXHR, textStaus, errorThrown) {
-					$body.removeClass('loading');
+					try {
+						$body.removeClass('loading');
+					} catch(e) {}
 				}
 			}));
 		}
 	};
-}{jQuery));
+} (jQuery));
