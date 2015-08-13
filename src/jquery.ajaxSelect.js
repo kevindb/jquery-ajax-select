@@ -2,7 +2,7 @@
 	// Plugin definition
 	$.fn.ajaxSelect = function(settings) {
 		// Extend this object from Deferred, allowing for promises
-		var defer = $.extend(this, $.deferred());
+		var defer = $.extend(this, $.Deferred());
 
 		// Extend our default options with those proved
 		// Note that the first argument to extend is an empty object
@@ -23,7 +23,7 @@
 			}
 		});
 
-		$.whenapply($, deferredList).done(function() {
+		$.when.apply($, deferredList).done(function() {
 			defer.resolve();
 		});
 
@@ -75,7 +75,7 @@
 		if (type !== null) {
 			type = type.toLowerCase();
 
-			if (type == 'select' || type == 'select-one' || type == 'slect-multiple') {
+			if (type == 'select' || type == 'select-one' || type == 'select-multiple') {
 				response = true;
 			}
 		}
@@ -84,8 +84,8 @@
 	};
 
 	var fnAddOptions = function(selectElem, settings) {
-		if (settings.prependBlankOpeion) {
-			selectElem.append(settings.optionsElem.clone());
+		if (settings.prependBlankOption) {
+			selectElem.append(settings.optionElem.clone());
 		}
 
 		$.each(settings.data, function(i, obj) {
