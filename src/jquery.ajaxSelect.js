@@ -34,7 +34,8 @@
 	$.fn.ajaxSelect.defaults = {
 		optionElem:			$('<option></option>'),
 		params:				{},
-		prependBlankOption: false
+		prependBlankOption:	false,
+		blankOptionValue:	''
 	};
 
 	// Private functions
@@ -85,7 +86,7 @@
 
 	var fnAddOptions = function(selectElem, settings) {
 		if (settings.prependBlankOption) {
-			selectElem.append(settings.optionElem.clone());
+			selectElem.append(settings.optionElem.clone().val(settings.blankOptionValue));
 		}
 
 		$.each(settings.data, function(i, obj) {
