@@ -35,7 +35,8 @@
 		optionElem:			$('<option></option>'),
 		params:				{},
 		prependBlankOption:	false,
-		blankOptionValue:	''
+		blankOptionValue:	'',
+		data:				null
 	};
 
 	// Private functions
