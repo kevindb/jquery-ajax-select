@@ -36,7 +36,8 @@
 		params:				{},
 		prependBlankOption:	false,
 		blankOptionValue:	'',
-		data:				null
+		data:				null,
+		dataSrc:			'data'
 	};
 
 	// Private functions
@@ -113,7 +114,11 @@
 				dataType:	'json',
 				data:		settings.params,
 				success:	function(data, textStatus, jqXHR) {
-					settings.data = data.data;
+					if (settings.dataSrc.length) {
+						settings.data = data[settings.dataSrc];
+					} else {
+						settings.data = data;
+					}
 					fnReplaceOptions(selectElem, settings);
 				},
 				beforeSend:	function(jqXHR, textStatus, errorThrown) {
