@@ -126,7 +126,7 @@
 						$body.addClass('loading');
 					} catch(e) {}
 				},
-				complete:	function(jqXHR, textStaus, errorThrown) {
+				complete:	function(jqXHR, textStatus, errorThrown) {
 					try {
 						$body.removeClass('loading');
 					} catch(e) {}
