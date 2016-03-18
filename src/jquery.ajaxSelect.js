@@ -87,16 +87,20 @@
 	};
 
 	var fnAddOptions = function(selectElem, settings) {
+		var options = [];
+
 		if (settings.prependBlankOption) {
-			selectElem.append(settings.optionElem.clone().val(settings.blankOptionValue));
+			options.push(settings.optionElem.clone().val(settings.blankOptionValue));
 		}
 
 		$.each(settings.data, function(i, obj) {
 			var optionElem = settings.optionElem.clone();
 			optionElem.val(obj.id);
 			optionElem.text(obj.name);
-			selectElem.append(optionElem);
+			options.push(optionElem);
 		});
+
+		selectElem.append(options);
 	};
 
 	var fnReplaceOptions = function(selectElem, settings) {
