@@ -93,11 +93,25 @@
 			options.push(settings.optionElem.clone().val(settings.blankOptionValue));
 		}
 
-		$.each(settings.data, function(i, obj) {
-			var optionElem = settings.optionElem.clone();
-			optionElem.val(obj.id);
-			optionElem.text(obj.name);
-			options.push(optionElem);
+		$.each(settings.data, function(i, datum) {
+			var value, text;
+			var datumType = typeof datum;
+
+			if (datumType === 'object') {
+				value = datum.id;
+				text = datum.name;
+
+			} else if (datumType === 'string' || datumType === 'number') {
+				value = datum;
+				text = datum;
+			}
+
+			if (typeof value !== 'undefined') {
+				var optionElem = settings.optionElem.clone();
+				optionElem.val(value);
+				optionElem.text(text);
+				options.push(optionElem);
+			}
 		});
 
 		selectElem.append(options);
