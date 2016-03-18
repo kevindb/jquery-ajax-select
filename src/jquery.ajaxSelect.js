@@ -1,4 +1,10 @@
 /*
+* jQuery ajaxSelect plugin
+* v1.0.0
+* https://github.com/kevindb/jquery-ajax-select
+*
+* This is a jQuery plugin that populates an HTML Select element with options from an AJAX call.
+*
 * Copyright 2015 Kevin Morris
 *
 * This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public
