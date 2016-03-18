@@ -100,8 +100,14 @@
 			var datumType = typeof datum;
 
 			if (datumType === 'object') {
-				if (typeof datum[settings.optionValueSrc] !== 'undefined') { value = datum[settings.optionValueSrc]; }
-				if (typeof datum[settings.optionTextSrc] !== 'undefined') { text = datum[settings.optionTextSrc]; }
+				if (Array.isArray(datum) && datum.length >= 2) {
+					value = datum[0];
+					text = datum[1];
+
+				} else {
+					if (typeof datum[settings.optionValueSrc] !== 'undefined') { value = datum[settings.optionValueSrc]; }
+					if (typeof datum[settings.optionTextSrc] !== 'undefined') { text = datum[settings.optionTextSrc]; }
+				}
 
 			} else if (datumType === 'string' || datumType === 'number') {
 				value = datum;
