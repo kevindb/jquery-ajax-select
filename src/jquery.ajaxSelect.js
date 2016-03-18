@@ -33,6 +33,8 @@
 	// Plugin defaults
 	$.fn.ajaxSelect.defaults = {
 		optionElem:			$('<option></option>'),
+		optionValueSrc:		'id',
+		optionTextSrc:		'name',
 		params:				{},
 		prependBlankOption:	false,
 		blankOptionValue:	'',
@@ -98,8 +100,8 @@
 			var datumType = typeof datum;
 
 			if (datumType === 'object') {
-				value = datum.id;
-				text = datum.name;
+				if (typeof datum[settings.optionValueSrc] !== 'undefined') { value = datum[settings.optionValueSrc]; }
+				if (typeof datum[settings.optionTextSrc] !== 'undefined') { text = datum[settings.optionTextSrc]; }
 
 			} else if (datumType === 'string' || datumType === 'number') {
 				value = datum;
